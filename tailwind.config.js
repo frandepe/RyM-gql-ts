@@ -1,7 +1,7 @@
 module.exports = {
   // content: ["./src/**/*.{js,jsx,ts,tsx}"],
   // content: ["./public/**/*.{html, js, jsx, ts, tsx}"],
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  /// content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   // content: ["./public/*/index.html", "./src/*.{html,js, jsx, ts, tsx}"],
   // content: ["./src/**/*.{html, ts, tsx}"],
   theme: {

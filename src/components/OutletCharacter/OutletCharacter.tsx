@@ -30,7 +30,7 @@ const OutletCharacter = () => {
 
   return (
     <div key={data.character.id}>
-      <section className="mb-20">
+      <section className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 mb-20 p-6">
         <div className="max-w-4xl mx-auto text-gray-800">
           <div className="text-center">
             <h3 className="mb-6 text-gray-800 text-2xl font-semibold">
@@ -44,10 +44,10 @@ const OutletCharacter = () => {
           <div className="grid md:grid-cols-2 gap-4 lg:gap-12 flex justify-center">
             <div className="mb-12 md:mb-0">
               <div
-                className="block rounded-lg shadow-lg text-white relative overflow-hidden bg-no-repeat bg-cover"
+                className="block rounded-lg shadow-lg shadow-stone-800/40 text-white relative overflow-hidden bg-no-repeat bg-cover"
                 style={{ backgroundPosition: "50%" }}
               >
-                <img src={data.character.image} className="" />
+                <img src={data.character.image} />
                 <div
                   className="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
                   style={{ backgroundColor: "rgba(72, 23, 144, 0.7)" }}
@@ -102,14 +102,28 @@ const OutletCharacter = () => {
                   <h5 className="mb-2 font-medium">
                     List of episodes and seasons:
                   </h5>
-                  {data.character.episode.map((episode: mapCharacter) => {
-                    return (
-                      <div key={episode.id}>
-                        ‣ {episode.name} - <b>{episode.episode}</b> -{" "}
-                        {episode.air_date}
-                      </div>
-                    );
-                  })}
+                  <ol className="relative border-l border-gray-200 dark:border-gray-800">
+                    {data.character.episode.map((episode: mapCharacter) => {
+                      return (
+                        <div key={episode.id}>
+                          <li className="mb-10 ml-6">
+                            <span className="flex absolute -left-3 justify-center items-center w-6 h-6 bg-blue-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-slide-100">
+                              <i className="fas fa-film"></i>
+                            </span>
+                            <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-gray-800">
+                              {episode.name}
+                            </h3>
+                            <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-600">
+                              {episode.air_date}
+                            </time>
+                            <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-800">
+                              {episode.episode}
+                            </p>
+                          </li>
+                        </div>
+                      );
+                    })}
+                  </ol>
                 </div>
               </div>
             </div>

@@ -7,7 +7,6 @@ const SEARCH_CHARACTER = gql`
         id
         name
         image
-        status
         species
         type
         gender

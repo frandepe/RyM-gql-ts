@@ -3,13 +3,16 @@ import { useState } from "react";
 import SEARCH_CHARACTER from "../../graphql/searchCharacter.graphql";
 import { useNavigate, Outlet } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import type { ChangeEvent } from "react";
+import e from "express";
 
-interface mapData {
+interface mapCharacters {
   id: number;
-  image: string;
+  image: any;
   name: string;
   species: string;
   type: string;
+  status: "Alive" | "Dead" | "unknown";
   gender: string;
 }
 
@@ -26,26 +29,36 @@ const CharacterByName = () => {
     }
   );
 
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  console.log({
+    error,
+    data,
+    loading,
+  });
+
   return (
     <div>
       <Outlet />
       <div className="mb-6 mx-7 flex justify-center items-center">
-        <input
-          type="text"
-          className="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Search a character"
-        />
-        <div>
+        <form className="m-4 flex">
+          <input
+            className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
+            value={name}
+            type="search"
+            onChange={handleSearchChange}
+            placeholder="Search a character"
+          />
           <button
+            className="px-8 rounded-r-lg bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-gray-100 font-bold p-4 uppercase border-green-600 border-t border-b border-r"
             onClick={() => getCharacterByName()}
-            className="m-4 flex-shrink-0 bg-green-700 hover:bg-green-600 border-green-700 hover:border-green-600 text-sm border-4 text-white py-1 px-2 rounded"
             type="button"
           >
             Search
           </button>
-        </div>
+        </form>
       </div>
 
       {loading && (
@@ -54,23 +67,25 @@ const CharacterByName = () => {
         </div>
       )}
       {error && (
-        <div>
-          <p style={{ color: "red" }}>
-            We couldn't find what you were looking for - Try searching for a
-            character, for example: Rick/Jerry/Meeseek...
-          </p>
+        <div
+          className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 m-4"
+          role="alert"
+        >
+          <span className="font-medium">Alert!</span> We couldn't find what you
+          were looking for - Try searching for a character, for example:
+          Rick/Jerry/Meeseek...
         </div>
       )}
       {data && (
         <div className="bg-gray-800 grid md:grid-cols-4 gap-4 justify-items-center grid-cols-1">
-          {data.characters.results.map((pj: mapData) => {
+          {data?.characters?.results?.map((pj: mapCharacters) => {
             return (
               <div className="antialiased text-gray-900 my-7" key={pj.id}>
                 <div>
                   <img
                     src={pj.image}
-                    alt=" random imgee"
-                    className="object-cover object-center rounded-lg shadow-md"
+                    alt=" random img"
+                    className="object-cover object-center rounded-full shadow-md"
                   />
 
                   <div className="relative px-4 -mt-16  ">
@@ -93,7 +108,7 @@ const CharacterByName = () => {
                         </span>
                       </div>
                       <button
-                        className='"mx-2 my-2 bg-green-700 transition duration-150 ease-in-out hover:bg-green-600 rounded text-white px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-green-600"'
+                        className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
                         onClick={() => {
                           navigate(`/characterbyname/${pj.id}`);
                           document.documentElement.scrollTop = 0;

@@ -15,7 +15,7 @@ function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+const NavbarTop = () => {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -154,4 +154,6 @@ export default function Example() {
       )}
     </Disclosure>
   );
-}
+};
+
+export default NavbarTop;

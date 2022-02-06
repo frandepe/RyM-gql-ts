@@ -15,7 +15,7 @@ const CharactersList = () => {
   if (error) return <p>Error</p>;
 
   return (
-    <div className="cardsCharacters__container min-h-screen grid md:grid-cols-4 gap-4 justify-items-center bg-green-400 grid-cols-1">
+    <div className="cardsCharacters__container min-h-screen grid md:grid-cols-4 gap-4 justify-items-center bg-gradient-to-r from-green-400 via-green-500 to-green-600 grid-cols-1">
       {data.characters.results.map((pj: mapCharacters) => {
         return (
           <div
