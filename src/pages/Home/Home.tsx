@@ -2,6 +2,7 @@ import charactersImg from "./charactersImg.jpg";
 import episodesImg from "./episodesImg.png";
 import characteridImg from "./characteridImg.jpg";
 import CardsHome from "../../components/CardsHome/CardsHome";
+import "./home.css";
 
 const Home = () => {
   return (

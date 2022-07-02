@@ -4,7 +4,6 @@ import SEARCH_CHARACTER from "../../graphql/searchCharacter.graphql";
 import { useNavigate, Outlet } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import type { ChangeEvent } from "react";
-import e from "express";
 
 interface mapCharacters {
   id: number;
