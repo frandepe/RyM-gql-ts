@@ -5,10 +5,6 @@ interface propsCard {
   desc: string;
 }
 
-// image?: HTMLImageElement
-// image?: String
-// image?: File
-
 const CardsHome = ({ imgs, page, desc }: propsCard) => {
   return (
     <div className="CardsHome__container">

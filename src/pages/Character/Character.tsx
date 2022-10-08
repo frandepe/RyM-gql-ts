@@ -1,4 +1,3 @@
-import React from "react";
 import CharacterByName from "../../components/CharacterByName/CharacterByName";
 
 const Character = () => {

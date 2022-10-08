@@ -4,10 +4,11 @@ import SEARCH_CHARACTER from "../../graphql/searchCharacter.graphql";
 import { useNavigate, Outlet } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import type { ChangeEvent } from "react";
+import { CharacterNotFound } from "./CharacterNotFound";
 
 interface mapCharacters {
   id: number;
-  image: any;
+  image: string;
   name: string;
   species: string;
   type: string;
@@ -27,16 +28,11 @@ const CharacterByName = () => {
       },
     }
   );
+  console.log(data);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
-
-  console.log({
-    error,
-    data,
-    loading,
-  });
 
   return (
     <div>
@@ -75,7 +71,7 @@ const CharacterByName = () => {
           Rick/Jerry/Meeseek...
         </div>
       )}
-      {data && (
+      {data?.characters?.results.length !== 0 ? (
         <div className="bg-gray-800 grid md:grid-cols-4 gap-4 justify-items-center grid-cols-1">
           {data?.characters?.results?.map((pj: mapCharacters) => {
             return (
@@ -122,6 +118,8 @@ const CharacterByName = () => {
             );
           })}
         </div>
+      ) : (
+        <CharacterNotFound />
       )}
     </div>
   );

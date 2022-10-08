@@ -19,12 +19,6 @@ const OutletCharacter = () => {
     navigate(`/characterbyname`);
   };
 
-  console.log({
-    error,
-    data,
-    loading,
-  });
-
   if (loading) return <Loading />;
   if (error) return <p>Something went wrong</p>;
 
@@ -47,7 +41,7 @@ const OutletCharacter = () => {
                 className="block rounded-lg shadow-lg shadow-stone-800/40 text-white relative overflow-hidden bg-no-repeat bg-cover"
                 style={{ backgroundPosition: "50%" }}
               >
-                <img src={data.character.image} />
+                <img src={data.character.image} alt="rym" />
                 <div
                   className="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
                   style={{ backgroundColor: "rgba(72, 23, 144, 0.7)" }}
